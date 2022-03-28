@@ -40,7 +40,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
     // ------ Mockcept ------
-    implementation "com.github.alexkamanin:mockcept:$mockceptVersion"
+    implementation "io.github.alexkamanin:mockcept:$mockceptVersion"
 }
 ```
 
