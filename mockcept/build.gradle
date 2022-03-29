@@ -3,6 +3,14 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+ext {
+    groupId = 'io.github.alexkamanin'
+    artifactId = 'mockcept'
+    versionName = '1.0.0'
+}
+
+apply from: rootProject.file('publishing.gradle')
+
 android {
     compileSdkVersion 31
 
