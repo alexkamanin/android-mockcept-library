@@ -14,6 +14,11 @@ import okhttp3.Protocol
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 
+/**
+ * @param context Application context
+ * @param handlers [Sequence] of method handlers that require mocking
+ * @param protocol [Protocol] from okHttp3 library
+ */
 class Mockcept(
     private val context: Context,
     private val handlers: Sequence<MethodHandler> = emptySequence(),

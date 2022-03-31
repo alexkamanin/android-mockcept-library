@@ -1,14 +1,22 @@
 package io.github.alexkamanin.mockcept.response
 
+/**
+ * A lot of responses from the server
+ * @property code Response code which automatically return [Mockcept]
+ */
 enum class StatusCode(internal val code: Int) {
 
-    // ------ 1xx ------
+    /**
+     * Codes starts with 1xx informational response – the request was received, continuing process
+     */
     Continue(100),
     SwitchingProtocols(101),
     Processing(102),
     EarlyHints(103),
 
-    // ------ 2xx ------
+    /**
+     * Codes starts with 2xx successful – the request was successfully received, understood, and accepted
+     */
     OK(200),
     Created(201),
     Accepted(202),
@@ -20,7 +28,9 @@ enum class StatusCode(internal val code: Int) {
     AlreadyReported(208),
     ImUsed(226),
 
-    // ------ 3xx ------
+    /**
+     * Codes starts with 3xx redirection – further action needs to be taken in order to complete the request
+     */
     MultipleChoices(300),
     MovedPermanently(301),
     Found(302),
@@ -30,7 +40,9 @@ enum class StatusCode(internal val code: Int) {
     TemporaryRedirect(307),
     PermanentRedirect(308),
 
-    // ------ 4xx ------
+    /**
+     * Codes starts with 4xx client error – the request contains bad syntax or cannot be fulfilled
+     */
     BadRequest(400),
     Unauthorized(401),
     PaymentRequired(402),
@@ -62,7 +74,9 @@ enum class StatusCode(internal val code: Int) {
     UnavailableForLegalReasons(451),
     ClientClosedRequest(499),
 
-    // ------ 5xx ------
+    /**
+     * Codes starts with 5xx server error – the server failed to fulfil an apparently valid request
+     */
     InternalServerError(500),
     NotImplemented(501),
     BadGateway(502),
