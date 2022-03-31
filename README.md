@@ -1,4 +1,4 @@
-## Mockcept = Mock + Intercept [![Maven Central](badge.svg)](ссылка)
+## Mockcept = Mock + Intercept [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.alexkamanin/mockcept/badge.svg)](https://search.maven.org/artifact/io.github.alexkamanin/mockcept)
 
 ### Description
 
