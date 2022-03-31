@@ -1,7 +1,7 @@
 package io.github.alexkamanin.mockcept
 
 import android.content.Context
-import io.github.alexkamanin.mockcept.handler.MethodHandler
+import io.github.alexkamanin.mockcept.handler.PathHandler
 import io.github.alexkamanin.mockcept.header.CONTENT_TYPE
 import io.github.alexkamanin.mockcept.header.MEDIA_TYPE_JSON
 import io.github.alexkamanin.mockcept.raw.json
@@ -21,7 +21,7 @@ import okhttp3.ResponseBody.Companion.toResponseBody
  */
 class Mockcept(
     private val context: Context,
-    private val handlers: Sequence<MethodHandler> = emptySequence(),
+    private val handlers: Sequence<PathHandler> = emptySequence(),
     private val protocol: Protocol = Protocol.HTTP_2
 ) : Interceptor {
 

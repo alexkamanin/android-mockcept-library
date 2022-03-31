@@ -1,6 +1,6 @@
 package io.github.alexkamanin.mockcept.dsl
 
-import io.github.alexkamanin.mockcept.handler.MethodHandler
+import io.github.alexkamanin.mockcept.handler.PathHandler
 import io.github.alexkamanin.mockcept.request.Method
 import io.github.alexkamanin.mockcept.request.MockceptRequest
 import io.github.alexkamanin.mockcept.request.toQueryStringList
@@ -25,7 +25,7 @@ typealias MockceptParameters = Pair<String, Any>
  * ```
  */
 @MockceptDsl
-fun MethodHandler.get(
+fun PathHandler.get(
     vararg parameters: MockceptParameters,
     responseBuilder: MockceptResponse.Builder.() -> Unit
 ) {
@@ -52,7 +52,7 @@ fun MethodHandler.get(
  * ```
  */
 @MockceptDsl
-fun MethodHandler.put(
+fun PathHandler.put(
     vararg parameters: MockceptParameters,
     responseBuilder: MockceptResponse.Builder.() -> Unit
 ) {
@@ -80,7 +80,7 @@ fun MethodHandler.put(
  * ```
  */
 @MockceptDsl
-fun MethodHandler.post(
+fun PathHandler.post(
     vararg parameters: MockceptParameters,
     responseBuilder: MockceptResponse.Builder.() -> Unit
 ) {
@@ -107,7 +107,7 @@ fun MethodHandler.post(
  * ```
  */
 @MockceptDsl
-fun MethodHandler.delete(
+fun PathHandler.delete(
     vararg parameters: MockceptParameters,
     responseBuilder: MockceptResponse.Builder.() -> Unit
 ) {
