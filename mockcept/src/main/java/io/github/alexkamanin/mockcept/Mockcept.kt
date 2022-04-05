@@ -42,7 +42,7 @@ class Mockcept(
 
             val urlParameters = url.toUri().query?.split(PARAMETERS_DELIMITER)?.sorted() ?: emptyList()
             val foundRequest = handlers
-                .filter { it.path == url.toUri().path }                                                 // Sorted by path
+                .filter { it.path.toRegex().matches(url.toUri().path) }                                 // Sorted by path
                 .flatMap { it.requests }                                                                // Merge found requests
                 .filter { request -> request.method == enumValueOrNull<Method>(method) }                // Sorted by request method
                 .filter { request -> request.parameters.isEmpty() == urlParameters.isNullOrEmpty() }    // Filter by request parameters

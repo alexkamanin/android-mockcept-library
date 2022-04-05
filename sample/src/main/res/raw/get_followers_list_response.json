@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1000,
+    "name": "Alex",
+    "surname": "Markov"
+  },
+  {
+    "id": 1001,
+    "name": "Emma",
+    "surname": "Adamson"
+  },
+  {
+    "id": 1002,
+    "name": "Emily",
+    "surname": "Wilson"
+  },
+  {
+    "id": 1003,
+    "name": "William",
+    "surname": "Harris"
+  },
+  {
+    "id": 1004,
+    "name": "Charlie",
+    "surname": "King"
+  }
+]

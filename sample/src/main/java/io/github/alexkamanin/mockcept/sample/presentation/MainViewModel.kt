@@ -2,8 +2,8 @@ package io.github.alexkamanin.mockcept.sample.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.alexkamanin.mockcept.sample.domain.entity.Account
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.github.alexkamanin.mockcept.sample.domain.entity.Account
 import io.github.alexkamanin.mockcept.sample.domain.usecase.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,6 +15,7 @@ class MainViewModel @Inject constructor(
     private val deleteAccountUseCase: DeleteAccountUseCase,
     private val getAccountUseCase: GetAccountUseCase,
     private val findAccountUseCase: FindAccountUseCase,
+    private val getFollowersUseCase: GetFollowersUseCase
 ) : ViewModel() {
 
     // ------ See logcat ------
@@ -37,6 +38,14 @@ class MainViewModel @Inject constructor(
             // ------ Not mocked example ------
             runCatching {
                 findAccountUseCase(41, "teacher")
+            }
+
+            getFollowersUseCase(userId = 1010)
+            getFollowersUseCase(userId = 1020)
+
+            // ------ Not mocked example ------
+            runCatching {
+                getFollowersUseCase(userId = 1030)
             }
         }
     }

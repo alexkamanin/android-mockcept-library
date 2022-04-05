@@ -1,13 +1,14 @@
 package io.github.alexkamanin.mockcept.sample.di
 
 import android.content.Context
-import io.github.alexkamanin.mockcept.Mockcept
-import io.github.alexkamanin.mockcept.sample.handler.AccountHandler
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import io.github.alexkamanin.mockcept.Mockcept
+import io.github.alexkamanin.mockcept.sample.handler.AccountHandler
+import io.github.alexkamanin.mockcept.sample.handler.FollowersHandler
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -36,7 +37,7 @@ object NetworkModule {
         )
 
     private val mockceptHandlers =
-        sequenceOf(AccountHandler)
+        sequenceOf(AccountHandler, FollowersHandler)
 
     @Provides
     @Singleton
