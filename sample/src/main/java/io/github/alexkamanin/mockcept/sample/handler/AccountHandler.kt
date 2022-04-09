@@ -5,10 +5,10 @@ import io.github.alexkamanin.mockcept.dsl.delete
 import io.github.alexkamanin.mockcept.dsl.get
 import io.github.alexkamanin.mockcept.dsl.post
 import io.github.alexkamanin.mockcept.dsl.put
-import io.github.alexkamanin.mockcept.handler.MethodHandler
+import io.github.alexkamanin.mockcept.handler.PathHandler
 import io.github.alexkamanin.mockcept.response.StatusCode
 
-object AccountHandler : MethodHandler() {
+object AccountHandler : PathHandler() {
 
     override val path = "/user/account"
 

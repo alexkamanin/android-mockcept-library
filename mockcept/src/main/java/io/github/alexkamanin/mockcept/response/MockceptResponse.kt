@@ -7,7 +7,16 @@ import androidx.annotation.RawRes
  * @param status Http status code.
  * @param body Reference to response body in json format.
  */
-data class MockceptResponse(
-    var status: StatusCode = StatusCode.OK,
-    @RawRes var body: Int? = null
-)
+class MockceptResponse private constructor(
+    val status: StatusCode,
+    @RawRes val body: Int?
+) {
+
+    class Builder {
+        var status: StatusCode = StatusCode.OK
+        @RawRes var body: Int? = null
+
+        internal fun build(): MockceptResponse =
+            MockceptResponse(status, body)
+    }
+}

@@ -1,18 +1,17 @@
 package io.github.alexkamanin.mockcept.dsl
 
-import io.github.alexkamanin.mockcept.handler.MethodHandler
+import io.github.alexkamanin.mockcept.handler.PathHandler
 import io.github.alexkamanin.mockcept.request.Method
 import io.github.alexkamanin.mockcept.request.MockceptRequest
 import io.github.alexkamanin.mockcept.request.toQueryStringList
 import io.github.alexkamanin.mockcept.response.MockceptResponse
 
-typealias MockceptResponseBuilder = MockceptResponse.() -> Unit
 typealias MockceptParameters = Pair<String, Any>
 
 /**
  * Create mocking for GET method
  * @param parameters [Pair]<String, String>, where second value can be regex
- * @param response [MockceptResponse]
+ * @param responseBuilder [MockceptResponse]
  *
  * For example:
  * ```
@@ -26,12 +25,15 @@ typealias MockceptParameters = Pair<String, Any>
  * ```
  */
 @MockceptDsl
-fun MethodHandler.get(vararg parameters: MockceptParameters, response: MockceptResponseBuilder) {
+fun PathHandler.get(
+    vararg parameters: MockceptParameters,
+    responseBuilder: MockceptResponse.Builder.() -> Unit
+) {
     requests.add(
         MockceptRequest(
             Method.GET,
             parameters.toQueryStringList(),
-            MockceptResponse().apply(response)
+            MockceptResponse.Builder().apply(responseBuilder).build()
         )
     )
 }
@@ -50,12 +52,15 @@ fun MethodHandler.get(vararg parameters: MockceptParameters, response: MockceptR
  * ```
  */
 @MockceptDsl
-fun MethodHandler.put(vararg parameters: MockceptParameters, response: MockceptResponseBuilder) {
+fun PathHandler.put(
+    vararg parameters: MockceptParameters,
+    responseBuilder: MockceptResponse.Builder.() -> Unit
+) {
     requests.add(
         MockceptRequest(
             Method.PUT,
             parameters.toQueryStringList(),
-            MockceptResponse().apply(response)
+            MockceptResponse.Builder().apply(responseBuilder).build()
         )
     )
 }
@@ -75,12 +80,15 @@ fun MethodHandler.put(vararg parameters: MockceptParameters, response: MockceptR
  * ```
  */
 @MockceptDsl
-fun MethodHandler.post(vararg parameters: MockceptParameters, response: MockceptResponseBuilder) {
+fun PathHandler.post(
+    vararg parameters: MockceptParameters,
+    responseBuilder: MockceptResponse.Builder.() -> Unit
+) {
     requests.add(
         MockceptRequest(
             Method.POST,
             parameters.toQueryStringList(),
-            MockceptResponse().apply(response)
+            MockceptResponse.Builder().apply(responseBuilder).build()
         )
     )
 }
@@ -99,12 +107,15 @@ fun MethodHandler.post(vararg parameters: MockceptParameters, response: Mockcept
  * ```
  */
 @MockceptDsl
-fun MethodHandler.delete(vararg parameters: MockceptParameters, response: MockceptResponseBuilder) {
+fun PathHandler.delete(
+    vararg parameters: MockceptParameters,
+    responseBuilder: MockceptResponse.Builder.() -> Unit
+) {
     requests.add(
         MockceptRequest(
             Method.DELETE,
             parameters.toQueryStringList(),
-            MockceptResponse().apply(response)
+            MockceptResponse.Builder().apply(responseBuilder).build()
         )
     )
 }
