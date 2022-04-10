@@ -49,7 +49,7 @@ dependencies {
 ###### SampleHandler.kt
 
 ```kotlin
-object SampleHandler : MethodHandler {
+object SampleHandler : PathHandler {
 
     override val path = "/sample"
 
