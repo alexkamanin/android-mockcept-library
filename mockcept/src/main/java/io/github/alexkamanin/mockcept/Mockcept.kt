@@ -21,7 +21,7 @@ import okhttp3.ResponseBody.Companion.toResponseBody
  */
 class Mockcept(
     private val context: Context,
-    private val handlers: Sequence<PathHandler> = emptySequence(),
+    private val handlers: List<PathHandler> = emptyList(),
     private val protocol: Protocol = Protocol.HTTP_2
 ) : Interceptor {
 
@@ -33,6 +33,8 @@ class Mockcept(
         const val ERROR_BODY = """{ "status" : 404, "error" : "NotFound", "message" : "Request not mocked by Mockcept" }"""
     }
 
+    private val requests = handlers.flatMap(PathHandler::requests)
+
     override fun intercept(chain: Interceptor.Chain): Response =
         with(chain.request()) {
             val builder = Response.Builder()
@@ -41,12 +43,11 @@ class Mockcept(
                 .addHeader(CONTENT_TYPE, MEDIA_TYPE_JSON)
 
             val urlParameters = url.toUri().query?.split(PARAMETERS_DELIMITER)?.sorted() ?: emptyList()
-            val foundRequest = handlers
-                .filter { it.path.toRegex().matches(url.toUri().path) }                                 // Sorted by path
-                .flatMap { it.requests }                                                                // Merge found requests
-                .filter { request -> request.method == enumValueOrNull<Method>(method) }                // Sorted by request method
-                .filter { request -> request.parameters.isEmpty() == urlParameters.isNullOrEmpty() }    // Filter by request parameters
-                .filter { request -> request.parameters.zip(urlParameters).all(::matches) }             // Contains request parameters
+            val foundRequest = requests
+                .filter { it.path.matches(url.toUri().path) }                                        // Sorted by path
+                .filter { request -> request.method == enumValueOrNull<Method>(method) }             // Sorted by request method
+                .filter { request -> request.queries.isEmpty() == urlParameters.isNullOrEmpty() }    // Filter by request parameters
+                .filter { request -> request.queries.zip(urlParameters).all(::matches) }             // Contains request parameters
                 .shuffled()
                 .firstOrNull()
 

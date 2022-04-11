@@ -6,7 +6,7 @@ plugins {
 ext {
     groupId = 'io.github.alexkamanin'
     artifactId = 'mockcept'
-    versionName = '1.0.3'
+    versionName = '1.0.4'
 }
 
 apply from: rootProject.file('publishing.gradle')

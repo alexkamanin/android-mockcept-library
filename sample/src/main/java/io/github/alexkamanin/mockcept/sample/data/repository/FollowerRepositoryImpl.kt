@@ -17,4 +17,9 @@ class FollowerRepositoryImpl @Inject constructor(
         withContext(Dispatchers.IO) {
             api.getFollowers(userId).map(FollowerDto::toEntity)
         }
+
+    override suspend fun get(userId: Long, followerId: Long): Follower =
+        withContext(Dispatchers.IO) {
+            api.getFollower(userId, followerId).toEntity()
+        }
 }

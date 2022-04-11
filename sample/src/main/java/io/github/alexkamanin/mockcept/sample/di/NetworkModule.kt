@@ -7,8 +7,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.github.alexkamanin.mockcept.Mockcept
-import io.github.alexkamanin.mockcept.sample.handler.AccountHandler
-import io.github.alexkamanin.mockcept.sample.handler.FollowersHandler
+import io.github.alexkamanin.mockcept.sample.handler.accountHandler
+import io.github.alexkamanin.mockcept.sample.handler.followersHandler
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -33,11 +33,11 @@ object NetworkModule {
     fun provideMockcept(@ApplicationContext context: Context): Mockcept =
         Mockcept(
             context = context,
-            handlers = mockceptHandlers
+            handlers = listOf(
+                accountHandler,
+                followersHandler
+            )
         )
-
-    private val mockceptHandlers =
-        sequenceOf(AccountHandler, FollowersHandler)
 
     @Provides
     @Singleton

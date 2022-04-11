@@ -8,4 +8,10 @@ interface FollowersApi {
 
     @GET("/user/{userId}/followers")
     suspend fun getFollowers(@Path("userId") userId: Long): List<FollowerDto>
+
+    @GET("/user/{userId}/followers/{followerId}")
+    suspend fun getFollower(
+        @Path("userId") userId: Long,
+        @Path("followerId") followerId: Long
+    ): FollowerDto
 }
