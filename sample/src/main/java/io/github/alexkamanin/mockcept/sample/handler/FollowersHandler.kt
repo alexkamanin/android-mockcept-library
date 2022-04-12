@@ -1,6 +1,6 @@
 package io.github.alexkamanin.mockcept.sample.handler
 
-import io.github.alexkamanin.mockcept.R
+import io.github.alexkamanin.mockcept.sample.R
 import io.github.alexkamanin.mockcept.handler.handlePath
 import io.github.alexkamanin.mockcept.response.StatusCode
 
