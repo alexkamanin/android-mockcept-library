@@ -110,7 +110,7 @@ val sampleHandler = pathHandler("/something") {
 @Provides
 @Singleton
 fun provideMockcept(@ApplicationContext context: Context): Mockcept =
-    Mokcept(
+    Mockcept(
         context = context,
         handlers = listOf(sampleHandler)
     )
@@ -136,7 +136,7 @@ fun provideRetrofit(client: OkHttpClient): Retrofit =
 ```kotlin
 single {
     OkHttpClient.Builder().addInterceptor(
-        Mokcept(
+        Mockcept(
             context = androidContext(),
             handlers = listOf(sampleHandler)
         )
