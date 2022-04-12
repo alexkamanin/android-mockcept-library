@@ -15,7 +15,8 @@ class MainViewModel @Inject constructor(
     private val deleteAccountUseCase: DeleteAccountUseCase,
     private val getAccountUseCase: GetAccountUseCase,
     private val findAccountUseCase: FindAccountUseCase,
-    private val getFollowersUseCase: GetFollowersUseCase
+    private val getFollowersUseCase: GetFollowersUseCase,
+    private val getFollowerUseCase: GetFollowerUseCase
 ) : ViewModel() {
 
     // ------ See logcat ------
@@ -46,6 +47,12 @@ class MainViewModel @Inject constructor(
             // ------ Not mocked example ------
             runCatching {
                 getFollowersUseCase(userId = 1030)
+            }
+
+            getFollowerUseCase(userId = 1010, followerId = 9457)
+            // ------ Mocked by 400 ------
+            runCatching {
+                getFollowerUseCase(userId = 1010, followerId = 4578)
             }
         }
     }

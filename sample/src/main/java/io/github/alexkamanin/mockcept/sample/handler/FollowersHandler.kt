@@ -1,18 +1,20 @@
 package io.github.alexkamanin.mockcept.sample.handler
 
-import io.github.alexkamanin.mockcept.R
-import io.github.alexkamanin.mockcept.dsl.get
-import io.github.alexkamanin.mockcept.handler.PathHandler
+import io.github.alexkamanin.mockcept.sample.R
+import io.github.alexkamanin.mockcept.handler.handlePath
 import io.github.alexkamanin.mockcept.response.StatusCode
 
-object FollowersHandler : PathHandler() {
+val followersHandler = handlePath("/user/(1010|1020)/followers") {
 
-    override val path = "/user/(1010|1020)/followers"
-
-    init {
-        get {
-            status = StatusCode.OK
-            body = R.raw.get_followers_list_response
-        }
+    get {
+        status = StatusCode.OK
+        body = R.raw.get_followers_list_response
+    }
+    "/9457".get {
+        status = StatusCode.OK
+        body = R.raw.get_follower_response
+    }
+    "/4578".get {
+        status = StatusCode.BadRequest
     }
 }

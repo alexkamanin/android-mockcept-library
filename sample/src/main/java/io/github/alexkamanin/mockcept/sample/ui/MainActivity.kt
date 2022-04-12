@@ -3,7 +3,7 @@ package io.github.alexkamanin.mockcept.sample.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import io.github.alexkamanin.mockcept.R
+import io.github.alexkamanin.mockcept.sample.R
 import io.github.alexkamanin.mockcept.sample.presentation.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

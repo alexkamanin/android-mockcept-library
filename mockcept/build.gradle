@@ -6,7 +6,7 @@ plugins {
 ext {
     groupId = 'io.github.alexkamanin'
     artifactId = 'mockcept'
-    versionName = '1.0.3'
+    versionName = '1.0.4'
 }
 
 apply from: rootProject.file('publishing.gradle')
@@ -19,11 +19,11 @@ android {
         targetSdkVersion 31
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
 }
 

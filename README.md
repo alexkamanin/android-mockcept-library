@@ -49,29 +49,56 @@ dependencies {
 ###### SampleHandler.kt
 
 ```kotlin
-object SampleHandler : PathHandler {
+val sampleHandler = pathHandler("/sample") {
 
-    override val path = "/sample"
-
-    init {
-        get(
-            "number" to 1,
-            "count" to 10
-        ) {
-            status = StatusCode.OK,
-            body = R.raw.get_sample_request
-        }
-        post(
-            "id" to "[0-9]+" // or if you like Intellij hints "[0-9]+".toRegex()
-        ) {
-            status = StatusCode.OK,
-            body = R.raw.post_sample_request
-        }
+    get(
+        "number" to 1,
+        "count" to 10
+    ) {
+        status = StatusCode.OK
+        body = R.raw.get_sample_request
+    }
+    post(
+        "id" to "[0-9]+" // or if you like Intellij hints "[0-9]+".toRegex()
+    ) {
+        status = StatusCode.OK
+        body = R.raw.post_sample_request
     }
 }
 ```
 
 > Library support multiply responses for one request method. For example, if you have **GET** without parameters and you want different responses any time or if you need response error periodically.
+
+#### You may specify regular expressions in the middle of the path
+
+###### SampleHandler.kt
+
+```kotlin
+val sampleHandler = pathHandler("/sample/[0-9]+/something") {
+
+    get {
+        status = StatusCode.OK
+        body = R.raw.get_sample_request
+    }
+}
+```
+
+#### If your path at the end implies a resource identifier, for example, http://sample.com/something/{somethingId}. You can return different answers.
+
+###### SampleHandler.kt
+
+```kotlin
+val sampleHandler = pathHandler("/something") {
+
+    "/(1000|1001)".get {
+        status = StatusCode.OK
+        body = R.raw.get_sample_request
+    }
+    "/1002".get {
+        status = StatusCode.NotFound
+    }
+}
+```
 
 #### Add Mockcept to dependency injection
 
@@ -83,9 +110,10 @@ object SampleHandler : PathHandler {
 @Provides
 @Singleton
 fun provideMockcept(@ApplicationContext context: Context): Mockcept =
-    Mockcept(context, mockceptHandlers)
-
-private val mockceptHandlers = sequenceOf(SampleHandler)
+    Mokcept(
+        context = context,
+        handlers = listOf(sampleHandler)
+    )
 
 @Provides
 @Singleton
@@ -110,7 +138,7 @@ single {
     OkHttpClient.Builder().addInterceptor(
         Mokcept(
             context = androidContext(),
-            handlers = sequenceOf(SampleHandler)
+            handlers = listOf(sampleHandler)
         )
     )
 }
@@ -122,6 +150,7 @@ single {
         .build()
 }
 ```
+
 # License
 
    Copyright 2022 Alex Kamanin

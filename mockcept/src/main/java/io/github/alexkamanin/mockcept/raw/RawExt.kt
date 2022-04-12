@@ -3,6 +3,7 @@ package io.github.alexkamanin.mockcept.raw
 import android.content.Context
 import android.content.res.Resources
 import androidx.annotation.RawRes
+import java.io.Reader
 
 internal fun Context.json(@RawRes res: Int): String =
     resources.json(res)
@@ -10,4 +11,4 @@ internal fun Context.json(@RawRes res: Int): String =
 private fun Resources.json(@RawRes res: Int): String =
     openRawResource(res)
         .bufferedReader()
-        .use { buffer -> buffer.readText() }
+        .use(Reader::readText)
