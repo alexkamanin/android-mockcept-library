@@ -49,7 +49,7 @@ dependencies {
 ###### SampleHandler.kt
 
 ```kotlin
-val sampleHandler = pathHandler("/sample") {
+val sampleHandler = handlePath("/sample") {
 
     get(
         "number" to 1,
@@ -74,7 +74,7 @@ val sampleHandler = pathHandler("/sample") {
 ###### SampleHandler.kt
 
 ```kotlin
-val sampleHandler = pathHandler("/sample/[0-9]+/something") {
+val sampleHandler = handlePath("/sample/[0-9]+/something") {
 
     get {
         status = StatusCode.OK
@@ -88,7 +88,7 @@ val sampleHandler = pathHandler("/sample/[0-9]+/something") {
 ###### SampleHandler.kt
 
 ```kotlin
-val sampleHandler = pathHandler("/something") {
+val sampleHandler = handlePath("/something") {
 
     "/(1000|1001)".get {
         status = StatusCode.OK
